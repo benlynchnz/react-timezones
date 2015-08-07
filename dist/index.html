@@ -1,0 +1,61 @@
+<html>
+
+	<head>
+
+		<title>React | Timezones</title>
+
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="timezones.css" />
+
+		<!-- // <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script> -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.0/moment-timezone-with-data.min.js"></script>
+
+		<script>
+			if (sessionStorage.getItem("timezone")) {
+				var tz = sessionStorage.getItem("timezone");
+				moment.tz.setDefault(tz);
+			} else {
+				sessionStorage.setItem("timezone", "Pacific/Auckland");
+			}
+		</script>
+
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min.js"></script>
+
+	</head>
+
+	<body>
+
+		<react-timezones
+			id="myTz"
+			data-org-timezone="Pacific/Auckland">
+		</react-timezones>
+
+		<script src="timezones.js"></script>
+
+
+		<script>
+			'use strict';
+
+			// var tz = jstz.determine(); // Determines the time zone of the browser client
+
+			// console.log(tz.name());
+
+			// let datePicker = document.getElementById('myDatePicker');
+
+			let datePickerHandler = function(e) {
+				console.log('ACTION:: ' + e.detail.action);
+				console.log('PAYLOAD:: ' + e.detail.payload);
+				var test = moment(JSON.parse(e.detail.payload).date).format('ddd DD MMM');
+			}
+			// datePicker.addEventListener('event', datePickerHandler);
+
+		</script>
+
+	</body>
+
+</html>
